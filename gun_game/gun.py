@@ -167,17 +167,31 @@ class Target:
 
     def new_target(self):
         """ Инициализация новой цели. """
-        x = self.x = rnd(600, 780)
-        y = self.y = rnd(300, 550)
-        r = self.r = rnd(2, 50)
-        color = self.color = RED
+        self.__init__()
 
-    def hit(self, points=1):
-        """Попадание шарика в цель."""
-        self.points += points
 
     def draw(self):
-        ...
+        """ отрисовка цели"""
+        pygame.draw.circle(
+            self.screen,
+            self.color,
+            (self.x, self.y),
+            self.r
+        )
+
+    def move(self):
+        """ движение цели """
+        self.x += self.vx
+        self.y += self.vy
+
+        if self.x + self.r >= WIDTH:
+            self.vx = -1 * self.vx
+        if self.x - self.r <= 0:
+            self.vx = -1 * self.vx
+        if self.y - self.r <= 0:
+            self.vy = -1 * self.vy
+        if self.y + self.r >= HEIGHT:
+            self.vy = -1 * self.vy
 
 
 pygame.init()
