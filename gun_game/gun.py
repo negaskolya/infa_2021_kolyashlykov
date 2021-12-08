@@ -80,7 +80,9 @@ class Ball:
         Returns:
             Возвращает True в случае столкновения мяча и цели. В противном случае возвращает False.
         """
-        # FIXME
+        if ((obj.x - self.x) ** 2 + (obj.y - self.y) ** 2) ** (1 / 2) <= (self.r + obj.r):
+            return True
+        else:
             return False
 
 
