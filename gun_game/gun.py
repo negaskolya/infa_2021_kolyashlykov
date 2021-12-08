@@ -1,5 +1,6 @@
 import math
 from random import choice
+from random import randint
 
 import pygame
 
@@ -88,11 +89,21 @@ class Ball:
 
 class Gun:
     def __init__(self, screen):
+        """
+        screen - экран
+        f2_power - мощность выстрела
+        f2_on - 1 если пушка заряжена, 0 - если нет
+        an - угол пушки
+        color - цвет пушки
+        x, y -  координаты пушки
+        """
         self.screen = screen
         self.f2_power = 10
         self.f2_on = 0
         self.an = 1
         self.color = GREY
+        self.x = 40
+        self.y = 450
 
     def fire2_start(self, event):
         self.f2_on = 1
