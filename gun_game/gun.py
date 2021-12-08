@@ -146,10 +146,24 @@ class Gun:
 
 
 class Target:
-    # self.points = 0
-    # self.live = 1
-    # FIXME: don't work!!! How to call this functions when object is created?
-    # self.new_target()
+    def __init__(self):
+        """
+        x y - координаты цели
+        r - радиус цели
+        vx, vy - скорость цели
+        color - цвет мишени
+        live - жизни цели
+        points - очки
+        """
+        self.screen = screen
+        self.x = randint(600, 750)
+        self.y = randint(300, 550)
+        self.r = randint(30, 50)
+        self.vx = randint(-15, 15)
+        self.vy = randint(-15, 15)
+        self.color = RED
+        self.live = 1
+        self.point = 5
 
     def new_target(self):
         """ Инициализация новой цели. """
