@@ -124,7 +124,17 @@ class Gun:
             self.color = GREY
 
     def draw(self):
-        # FIXIT don't know how to do it
+        """ Отрисовка мощности пушки"""
+        width = 10
+        coords = [
+            (self.x, self.y),
+            (self.x + (self.f2_power + 20) * math.cos(self.an),
+             self.y + (self.f2_power + 20) * math.sin(self.an)),
+            (self.x + (self.f2_power + 20) * math.cos(self.an) + width * math.sin(self.an),
+             self.y + (self.f2_power + 20) * math.sin(self.an) - width * math.cos(self.an)),
+            (self.x + width * math.sin(self.an), self.y - width * math.cos(self.an))
+        ]
+        pygame.draw.polygon(self.screen, self.color, coords, width=0)
 
     def power_up(self):
         if self.f2_on:
