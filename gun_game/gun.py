@@ -20,6 +20,8 @@ GAME_COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 WIDTH = 800
 HEIGHT = 600
+FPS = 30
+g = 0.8
 
 
 class Ball:
@@ -209,7 +211,9 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 bullet = 0
 balls = []
-
+targets = []
+points = 0  # Счетчик игровых очков
+myfont = pygame.font.SysFont("Comic Sans MS", 30)
 clock = pygame.time.Clock()
 gun = Gun(screen)
 target = Target()
@@ -217,8 +221,10 @@ finished = False
 
 while not finished:
     screen.fill(WHITE)
+    screen.blit(myfont.render(f'Score: {points}', False, (0, 0, 0)), (10, 10))
     gun.draw()
     target.draw()
+    target.move()
     for b in balls:
         b.draw()
     pygame.display.update()
@@ -238,7 +244,8 @@ while not finished:
         b.move()
         if b.hittest(target) and target.live:
             target.live = 0
-            target.hit()
+            points += target.point
+            print(points)
             target.new_target()
     gun.power_up()
 
